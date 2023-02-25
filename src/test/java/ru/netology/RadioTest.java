@@ -23,7 +23,9 @@ public class RadioTest {
             int actual = radio.getNumberCurrentRadioStation();
             if (i < 10) {
                 Assertions.assertEquals(i, actual);
-            } else Assertions.assertEquals(0, actual);
+            } else {
+                Assertions.assertEquals(0, actual);
+            }
 
         }
     }
@@ -36,7 +38,9 @@ public class RadioTest {
             int actual = radio.getNumberCurrentRadioStation();
             if (i >= 0) {
                 Assertions.assertEquals(i, actual);
-            } else Assertions.assertEquals(9, actual);
+            } else {
+                Assertions.assertEquals(9, actual);
+            }
 
         }
     }

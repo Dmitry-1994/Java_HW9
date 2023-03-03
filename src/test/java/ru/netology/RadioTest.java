@@ -16,13 +16,21 @@ public class RadioTest {
         Assertions.assertEquals(expected, radio.getNumberCurrentRadioStation());
     }
 
+    @ParameterizedTest
+    @CsvFileSource(resources = "/correctRadioStationBase.csv")
+    public void setCurrentRadioStationBase(int setNumberRadioStation, int expected) {
+        Radio radio = new Radio();
+        radio.setNumberCurrentRadioStation(setNumberRadioStation);
+        Assertions.assertEquals(expected, radio.getNumberCurrentRadioStation());
+    }
+
     @Test
     public void nextStationTest() {
         Radio radio = new Radio(countRadioStation);
-        for (int i = 1; i <= (maxNumberRadioStation + 1); i++) {
+        for (int i = 1; i <= countRadioStation; i++) {
             radio.next();
             int actual = radio.getNumberCurrentRadioStation();
-            if (i <= maxNumberRadioStation) {
+            if (i < countRadioStation) {
                 Assertions.assertEquals(i, actual);
             } else {
                 Assertions.assertEquals(0, actual);

@@ -1,12 +1,10 @@
 package ru.netology;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-//@NoArgsConstructor
-//@AllArgsConstructor
-@Data
+@Getter
+//@Setter
 public class Radio {
     private int numberCurrentRadioStation;
     private int volumeCurrent;
@@ -40,10 +38,6 @@ public class Radio {
 
     }
 
-//    public int getNumberCurrentRadioStation() {
-//        return numberCurrentRadioStation;
-//    }
-
     public void setNumberCurrentRadioStation(int newNumberRadioStation) {
         if ((newNumberRadioStation > maxNumberRadioStation) | (newNumberRadioStation < 0)) {
             return;
@@ -69,8 +63,4 @@ public class Radio {
             return;
         }
     }
-
-//    public int getVolumeCurrent() {
-//        return volumeCurrent;
-//    }
 }

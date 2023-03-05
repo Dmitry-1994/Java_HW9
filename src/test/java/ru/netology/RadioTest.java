@@ -7,7 +7,6 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 public class RadioTest {
     private int countRadioStation = 15;
-    //private int maxNumberRadioStation = countRadioStation - 1;
     @ParameterizedTest
     @CsvFileSource(resources = "/correctRadioStation.csv")
     public void setCurrentRadioStationTest(int setCountRadioStation, int setNumberRadioStation, int expected) {

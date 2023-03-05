@@ -1,11 +1,28 @@
 package ru.netology;
 
 public class Radio {
+    private int countRadioStation;
+    private int maxNumberRadioStation;
     private int numberCurrentRadioStation;
     private int volumeCurrent;
 
+    public Radio(){
+        this.countRadioStation = 10;
+        this.maxNumberRadioStation = countRadioStation - 1;
+    }
+    public Radio(int countRadioStation){
+        if (countRadioStation > 0){
+            this.countRadioStation = countRadioStation;
+        } else {
+            this.countRadioStation = 10;
+        }
+        this.maxNumberRadioStation = this.countRadioStation - 1;
+    }
+
+    // Настройка радиостанций
+
     public void next() {
-        if (numberCurrentRadioStation == 9) {
+        if (numberCurrentRadioStation == maxNumberRadioStation) {
             numberCurrentRadioStation = 0;
         } else {
             numberCurrentRadioStation = numberCurrentRadioStation + 1;
@@ -14,24 +31,30 @@ public class Radio {
 
     public void prev() {
         if (numberCurrentRadioStation == 0) {
-            numberCurrentRadioStation = 9;
+            numberCurrentRadioStation = maxNumberRadioStation;
         } else {
             numberCurrentRadioStation = numberCurrentRadioStation - 1;
         }
 
     }
 
-    public int getNumberCurrentRadioStation() {
-        return numberCurrentRadioStation;
-    }
-
     public void setNumberCurrentRadioStation(int newNumberRadioStation) {
-        if ((newNumberRadioStation > 9) | (newNumberRadioStation < 0)) {
+        if ((newNumberRadioStation > maxNumberRadioStation) | (newNumberRadioStation < 0)) {
             return;
         } else {
             numberCurrentRadioStation = newNumberRadioStation;
         }
     }
+
+    public int getNumberCurrentRadioStation() {
+        return numberCurrentRadioStation;
+    }
+
+    public int getMaxNumberRadioStation(){
+        return maxNumberRadioStation;
+    }
+
+    // Настройка громкости
 
     public void increaseVolume() {
         if (volumeCurrent < 10) {

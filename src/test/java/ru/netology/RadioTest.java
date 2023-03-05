@@ -6,22 +6,30 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
 public class RadioTest {
+    private int countRadioStation = 15;
     @ParameterizedTest
     @CsvFileSource(resources = "/correctRadioStation.csv")
-    public void setCurrentRadioStationTest(int set, int expected) {
+    public void setCurrentRadioStationTest(int setCountRadioStation, int setNumberRadioStation, int expected) {
+        Radio radio = new Radio(setCountRadioStation);
+        radio.setNumberCurrentRadioStation(setNumberRadioStation);
+        Assertions.assertEquals(expected, radio.getNumberCurrentRadioStation());
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/correctRadioStationBase.csv")
+    public void setCurrentRadioStationBase(int setNumberRadioStation, int expected) {
         Radio radio = new Radio();
-        radio.setNumberCurrentRadioStation(set);
-        int actual = radio.getNumberCurrentRadioStation();
-        Assertions.assertEquals(expected, actual);
+        radio.setNumberCurrentRadioStation(setNumberRadioStation);
+        Assertions.assertEquals(expected, radio.getNumberCurrentRadioStation());
     }
 
     @Test
     public void nextStationTest() {
-        Radio radio = new Radio();
-        for (int i = 1; i <= 10; i++) {
+        Radio radio = new Radio(countRadioStation);
+        for (int i = 1; i <= countRadioStation; i++) {
             radio.next();
             int actual = radio.getNumberCurrentRadioStation();
-            if (i < 10) {
+            if (i < countRadioStation) {
                 Assertions.assertEquals(i, actual);
             } else {
                 Assertions.assertEquals(0, actual);
@@ -32,14 +40,14 @@ public class RadioTest {
 
     @Test
     public void prevStationTest() {
-        Radio radio = new Radio();
-        for (int i = 9; i >= -1; i--) {
+        Radio radio = new Radio(countRadioStation);
+        for (int i = radio.getMaxNumberRadioStation(); i >= -1; i--) {
             radio.prev();
             int actual = radio.getNumberCurrentRadioStation();
             if (i >= 0) {
                 Assertions.assertEquals(i, actual);
             } else {
-                Assertions.assertEquals(9, actual);
+                Assertions.assertEquals(radio.getMaxNumberRadioStation(), actual);
             }
 
         }
@@ -47,7 +55,7 @@ public class RadioTest {
 
     @Test
     public void volumeIncreaseDecreaseTest() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(countRadioStation);
         for (int i = 1; i <= 11; i++) {
             radio.increaseVolume();
             int actual = radio.getVolumeCurrent();

@@ -1,5 +1,10 @@
 package ru.netology;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Radio {
     private int countRadioStation;
     private int maxNumberRadioStation;
@@ -7,16 +12,16 @@ public class Radio {
     private int volumeCurrent;
 
     public Radio(){
-        this.countRadioStation = 10;
-        this.maxNumberRadioStation = countRadioStation - 1;
+        setCountRadioStation(10);
+        setMaxNumberRadioStation(countRadioStation - 1);
     }
     public Radio(int countRadioStation){
         if (countRadioStation > 0){
-            this.countRadioStation = countRadioStation;
+            setCountRadioStation(countRadioStation);
         } else {
-            this.countRadioStation = 10;
+            setCountRadioStation(10);
         }
-        this.maxNumberRadioStation = this.countRadioStation - 1;
+        setMaxNumberRadioStation(getCountRadioStation() - 1);
     }
 
     // Настройка радиостанций
@@ -46,15 +51,11 @@ public class Radio {
         }
     }
 
-    public int getNumberCurrentRadioStation() {
-        return numberCurrentRadioStation;
-    }
-
     // Настройка громкости
 
     public void increaseVolume() {
         if (volumeCurrent < 10) {
-            volumeCurrent = volumeCurrent + 1;
+            setVolumeCurrent(volumeCurrent + 1);
         } else {
             return;
         }
@@ -62,13 +63,9 @@ public class Radio {
 
     public void decreaseVolume() {
         if (volumeCurrent > 0) {
-            volumeCurrent = volumeCurrent - 1;
+            setVolumeCurrent(volumeCurrent - 1);
         } else {
             return;
         }
-    }
-
-    public int getVolumeCurrent() {
-        return volumeCurrent;
     }
 }

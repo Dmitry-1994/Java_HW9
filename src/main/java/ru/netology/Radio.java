@@ -50,6 +50,10 @@ public class Radio {
         return numberCurrentRadioStation;
     }
 
+    public int getMaxNumberRadioStation(){
+        return maxNumberRadioStation;
+    }
+
     // Настройка громкости
 
     public void increaseVolume() {

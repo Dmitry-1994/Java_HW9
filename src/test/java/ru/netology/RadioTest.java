@@ -7,7 +7,6 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 public class RadioTest {
     private int countRadioStation = 15;
-    private int maxNumberRadioStation = countRadioStation - 1;
     @ParameterizedTest
     @CsvFileSource(resources = "/correctRadioStation.csv")
     public void setCurrentRadioStationTest(int setCountRadioStation, int setNumberRadioStation, int expected) {
@@ -42,13 +41,13 @@ public class RadioTest {
     @Test
     public void prevStationTest() {
         Radio radio = new Radio(countRadioStation);
-        for (int i = maxNumberRadioStation; i >= -1; i--) {
+        for (int i = radio.getMaxNumberRadioStation(); i >= -1; i--) {
             radio.prev();
             int actual = radio.getNumberCurrentRadioStation();
             if (i >= 0) {
                 Assertions.assertEquals(i, actual);
             } else {
-                Assertions.assertEquals(maxNumberRadioStation, actual);
+                Assertions.assertEquals(radio.getMaxNumberRadioStation(), actual);
             }
 
         }
